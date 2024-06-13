@@ -42,6 +42,7 @@ def get_search_results(input_text: str) -> list[str]:
     try:
         search_response = requests.get(url, params=query_params)
         search_response = xmltodict.parse(search_response.text)
+        print(search_response)
         urls = [group['doc']['url'] for group in search_response['yandexsearch']['response']['results']['grouping']['group']]
     except Exception as e:
         print(e)  # logs.debug(e)...
