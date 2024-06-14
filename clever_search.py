@@ -13,7 +13,7 @@ st.markdown(hide_streamlit_footer, unsafe_allow_html=True)
 private_key = os.environ.get('searchapikey')
 url = "https://yandex.ru/search/xml"
 
-filters = [  # todo добавить фильтры
+filters = [
     'dns.ru',
     'citilink.ru',
     'apple.com',
@@ -35,7 +35,7 @@ filter_query = " | ".join([f"site:{url}" for url in filters])
 def get_search_results(input_text: str) -> list[str]:
 
     query_params = {
-        "folderid": "b1g60k1kva2jrejf255o",
+        "folderid": os.environ.get("folderid"),
         "apikey": private_key,
         "query": input_text + f"({filter_query})",
     }
